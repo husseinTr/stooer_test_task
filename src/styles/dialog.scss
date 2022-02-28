@@ -1,0 +1,58 @@
+$dialog-margin: 0 1.25rem;
+
+.dialog {
+  width: 27rem;
+}
+
+.dialog-actions-wrapper {
+  width: 100%;
+}
+
+.dialog-actions-part {
+  float: right;
+  margin: $dialog-margin;
+  padding: 0.2rem 0;
+}
+
+.dialog-actions-part-after {
+  clear: right;
+}
+
+::ng-deep .mat-dialog-container { /* stylelint-disable-line */
+  margin: 0;
+  padding: 0;
+}
+
+.dialog-content {
+  margin: 0;
+  overflow: auto;
+  overflow-x: hidden !important;
+  padding: 1rem 0.75rem 0;
+}
+
+.dialog-inner-content {
+  text-align: center;
+}
+
+.dialog-title {
+  text-align: center;
+  margin: 0.6rem 0;
+}
+
+.dialog-wrapper {
+  width: 100%;
+  height: 40%;
+}
+
+.full-width-form {
+  margin: 0;
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.matInput {
+  line-height: 0.1;
+}

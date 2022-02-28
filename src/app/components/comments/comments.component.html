@@ -1,1 +1,11 @@
-<p>comments works!</p>
+<app-tool-bar [title]="toolbarTitle" [showBackIcon]="true" (searchEvent)=" receiveSearchEvent($event)">
+</app-tool-bar>
+<div class="commentsContainer">
+  <mat-card class="commentCard" *ngFor="let comment of comments">
+    <mat-card-content>
+      <div class="commentContent">{{ comment.name }}</div>
+      <div class="commentContent">{{ comment.email }}</div>
+      <div class="commentContent">{{ comment.body }}</div>
+    </mat-card-content>
+  </mat-card>
+</div>

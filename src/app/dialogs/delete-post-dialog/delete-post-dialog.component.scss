@@ -1,0 +1,8 @@
+@import '../../../styles/dialog.scss';
+
+.dialog-content {
+  margin: 0;
+  overflow: auto;
+  overflow-x: hidden !important;
+  padding: 1rem 0.75rem;
+}

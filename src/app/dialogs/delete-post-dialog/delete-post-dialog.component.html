@@ -1,0 +1,27 @@
+<div class="dialog">
+  <div mat-dialog-title class="dialog-title">Delete post</div>
+  <mat-divider></mat-divider>
+
+  <div class="dialog-wrapper">
+    <div mat-dialog-content class="dialog-content">
+      <div class="dialog-inner-content">
+        <div>
+          <span>Are you sure you want to delete the post {{ postId }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+  <div class="dialog-actions-wrapper">
+    <div mat-dialog-actions class="dialog-actions-part">
+      <button class="ok-btn" mat-raised-button (click)="onOkClick()">
+        Delete
+      </button>
+      <button class="cancel-btn" mat-raised-button (click)="onCancelClick()">
+        Cancel
+      </button>
+    </div>
+    <div class="dialog-actions-part-after"></div>
+  </div>
+</div>

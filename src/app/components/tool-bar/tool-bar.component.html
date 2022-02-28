@@ -1,7 +1,24 @@
 <mat-toolbar color="primary">
+  <mat-toolbar-row>
   <span>My Logo</span>
-  <span class="searchSpacer"></span>
-  <button mat-icon-button class="searchIcon" aria-label="search icon">
+  <h1 class="toolbarTitle">{{ title }}</h1>
+  <span class="spacer"></span>
+  <button mat-icon-button class="profilIcon" aria-label="profil icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar-row>
+<mat-toolbar-row>
+  <button *ngIf="showBackIcon" mat-icon-button class="backIcon" (click)="navigateBack()" aria-label="back icon">
+    <mat-icon>west</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <form class="searchForm">
+    <mat-form-field class="searchMatFormField">
+      <input type="text" matInput [formControl]="searchInputControl" autocomplete="off">
+    </mat-form-field>
+  </form>
+  <button mat-icon-button class="searchIcon" (click)="onSearchIconClick()" aria-label="search icon">
     <mat-icon>search</mat-icon>
   </button>
+</mat-toolbar-row>
 </mat-toolbar>

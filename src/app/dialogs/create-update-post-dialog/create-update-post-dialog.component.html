@@ -1,0 +1,48 @@
+<div class="dialog">
+  <div mat-dialog-title class="dialog-title">{{ dialogTitle }}</div>
+  <mat-divider></mat-divider>
+  <div class="dialog-wrapper">
+    <form [formGroup]="form" class="full-width-form">
+      <div mat-dialog-content class="dialog-content">
+        <mat-form-field floatLabel="always">
+          <mat-label>Post title</mat-label>
+          <input class="matInput" matInput formControlName="postTitleControl" required autocomplete="off"
+            cdkFocusInitial />
+          <mat-hint 
+            *ngIf="postTitleControl.hasError('required') || postTitleControl.value.trim() === ''" 
+            class="matHint" 
+            align="end"
+          >
+            Post title required
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field id="postBodyField" floatLabel="always">
+          <mat-label>Post body</mat-label>
+          <input class="matInput" matInput formControlName="postBodyControl" autocomplete="off" required />
+          <mat-hint *ngIf="postBodyControl.hasError('required') || postBodyControl.value.trim() === ''"
+           class="matHint" 
+           align="end"
+          >
+            Post body required
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="dialog-actions-wrapper">
+    <div mat-dialog-actions class="dialog-actions-part">
+      <button 
+        [disabled]="!isSaveClickable" 
+        class="save-btn" 
+        mat-button mat-raised-button 
+        (click)="onSaveClick()">
+        {{ buttonTitle }}
+      </button>
+      <button class="cancel-btn" mat-button mat-raised-button (click)="onCancelClick()">
+        Cancel
+      </button>
+    </div>
+    <div class="dialog-actions-part-after"></div>
+  </div>
+</div>

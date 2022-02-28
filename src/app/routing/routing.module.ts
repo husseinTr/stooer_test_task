@@ -1,14 +1,24 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { UsersComponent } from "../components/users/users.component";
+import { CommentsComponent } from '../components/comments/comments.component';
+import { PostsComponent } from '../components/posts/posts.component';
 
-export const USERS_VIEW_ROUTE = 'users';
+const POSTS_VIEW_ROUTE = 'posts';
+const POST_COMMENTS_ROUTE ='post/comments/:id';
+
 export const routes: Routes = [
   {
-    path: USERS_VIEW_ROUTE,
-    component: UsersComponent,
+    path: POSTS_VIEW_ROUTE,
+    component: PostsComponent,
   },
+  {
+    path: POST_COMMENTS_ROUTE,
+    component: CommentsComponent,
+  },
+  
+  { path: '', redirectTo: POSTS_VIEW_ROUTE, pathMatch: 'full' },
+  { path: '**', redirectTo: POSTS_VIEW_ROUTE },
 ];
 
 @NgModule({
@@ -16,5 +26,4 @@ export const routes: Routes = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [RouterModule],
 })
-
 export class RoutingModule {}
