@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 /**
  * Removes subsciption event.
- * @param subscription 
+ * @param subscription
  */
 export const removeRequestSubscription = (subscription: Subscription): void => {
   if (subscription) {
@@ -26,7 +26,7 @@ export const isNonEmptyArray = (array: any): boolean => {
  * Checks if the given object is non-empty object.
  *
  * @param object Object to be checked.
- * 
+ *
  * @returns true, if the parameter is a non-empty object, false otherwise.
  */
 
@@ -54,8 +54,10 @@ export const isObjectValue = (object: any): boolean => {
  */
 export const isNonEmptyStringValue = (stringValue: any): boolean => {
   return typeof stringValue === 'string' && stringValue.trim() !== '';
-}
+};
 
 export const openErrorMsgSnackBar = (msg: string, snackBar: MatSnackBar) => {
-  snackBar.open(msg, 'Ok');
-}
+  snackBar.open(msg, 'Ok', {
+    duration: 2000,
+  });
+};

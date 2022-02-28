@@ -18,13 +18,22 @@
         </mat-form-field>
         <mat-form-field id="postBodyField" floatLabel="always">
           <mat-label>Post body</mat-label>
-          <input class="matInput" matInput formControlName="postBodyControl" autocomplete="off" required />
+          <textarea 
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"
+            formControlName="postBodyControl"
+            autocomplete="off"
+            required>
+          </textarea>
           <mat-hint *ngIf="postBodyControl.hasError('required') || postBodyControl.value.trim() === ''"
-           class="matHint" 
-           align="end"
-          >
-            Post body required
-          </mat-hint>
+          class="matHint" 
+          align="end"
+         >
+           Post body required
+         </mat-hint>
         </mat-form-field>
       </div>
     </form>

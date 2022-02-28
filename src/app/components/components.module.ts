@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { PostsComponent } from "./posts/posts.component";
+import {TextFieldModule} from '@angular/cdk/text-field';
 import { ToolBarComponent } from "./tool-bar/tool-bar.component";
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ToolBarComponent } from "./tool-bar/tool-bar.component";
     MatTableModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    TextFieldModule
   ],
   exports: [ToolBarComponent],
   entryComponents: [DeletePostDialogComponent, CreateUpdatePostDialogComponent],
