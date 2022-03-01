@@ -66,11 +66,4 @@ export class CommentsComponent implements OnInit, OnDestroy {
         },
       });
   }
-
-  receiveSearchEvent($event: any) {
-    const filterValue = $event.toLowerCase();
-    this.comments = this.comments.filter((comment) =>
-      comment.name.toLowerCase().includes(filterValue)
-    );
-  }
 }

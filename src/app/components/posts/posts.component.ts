@@ -147,4 +147,8 @@ export class PostsComponent implements OnInit, OnDestroy {
       this.router.navigate([POST_COMMENTS_URL, postId]);
     }
   }
+
+  onSelectedOption($event: any) {
+    this.posts = $event;
+  }
 }

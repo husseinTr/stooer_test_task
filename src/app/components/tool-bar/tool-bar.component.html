@@ -8,16 +8,32 @@
   </button>
 </mat-toolbar-row>
 <mat-toolbar-row>
-  <button *ngIf="showBackIcon" mat-icon-button class="backIcon" (click)="navigateBack()" aria-label="back icon">
-    <mat-icon>west</mat-icon>
+  <button 
+    *ngIf="showBackIcon" 
+    mat-icon-button 
+    class="backIcon" 
+    (click)="navigateBack()" 
+    aria-label="back icon">
+      <mat-icon>west</mat-icon>
   </button>
   <span class="spacer"></span>
-  <form class="searchForm">
+  <form *ngIf="showSearchForm" class="searchForm">
     <mat-form-field class="searchMatFormField">
-      <input type="text" matInput [formControl]="searchInputControl" autocomplete="off">
+      <input 
+        type="text" 
+        matInput 
+        [formControl]="searchInputControl" 
+        #autocompleteInput 
+        [matAutocomplete]="auto">
+      <button mat-icon-button matPrefix (click)="onCloseClick()"><mat-icon>close</mat-icon></button>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayPost">
+        <mat-option (onSelectionChange)="onPostSelect($event)" *ngFor="let option of autoCompletePostsList" [value]="option">
+          {{option.title}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   </form>
-  <button mat-icon-button class="searchIcon" (click)="onSearchIconClick()" aria-label="search icon">
+  <button mat-icon-button class="searchIcon" (click)="showSearchForm = !showSearchForm" aria-label="search icon">
     <mat-icon>search</mat-icon>
   </button>
 </mat-toolbar-row>

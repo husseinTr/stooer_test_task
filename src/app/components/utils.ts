@@ -1,4 +1,5 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Post } from './interfaces';
 import { Subscription } from 'rxjs';
 
 /**
@@ -54,6 +55,26 @@ export const isObjectValue = (object: any): boolean => {
  */
 export const isNonEmptyStringValue = (stringValue: any): boolean => {
   return typeof stringValue === 'string' && stringValue.trim() !== '';
+};
+
+/**
+ * Filters an array of post objects by the given value
+ * @param vlaue Filter value
+ * @param postsList Array to be filtered
+ * @returns The filterd array of posts which contains the given title
+ */
+export const filterPostsByValue = (value: string, postsList: Post[]): Post[] => {
+  if (typeof value != 'string') {
+      return [];
+    }
+    if (value === '' || value === null) {
+      return [];
+    }
+    return value
+      ? postsList.filter(
+          (post) => post.title.toLowerCase().indexOf(value.toLowerCase()) != -1
+        )
+      : postsList;
 };
 
 export const openErrorMsgSnackBar = (msg: string, snackBar: MatSnackBar) => {
