@@ -3,8 +3,8 @@
  * Describes post object data
  */
 export interface Post {
-  userId: number;
-  id: number;
+  userId?: number;
+  id?: any;
   title: string;
   body: string;
 }
@@ -25,6 +25,7 @@ export interface Comment {
  */
 export interface DialogData {
   post?: Post;
+  posts?: Post[];
   id?: number;
   operation: string;
 }
@@ -35,4 +36,10 @@ export interface DialogData {
  export const enum PostCreateUpdateDialogOperationValue {
   CREATE_POST = 'create',
   UPDATE_POST = 'update',
+}
+
+export interface DialogComponentSetupConfig {
+  detectChanges?: boolean;
+  dialogData?: any;
+  dialogRef?: any;
 }

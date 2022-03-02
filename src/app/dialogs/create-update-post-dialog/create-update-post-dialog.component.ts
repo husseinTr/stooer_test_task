@@ -15,13 +15,12 @@ import {
   PostCreateUpdateDialogOperationValue
 } from '../../components/interfaces';
 import {
-  openErrorMsgSnackBar,
   isNonEmptyObject,
-  isNonEmptyStringValue,
-  removeRequestSubscription
+  isNonEmptyStringValue, openErrorMsgSnackBar, removeRequestSubscription
 } from '../../components/utils';
 import { DataService } from '../../services/data.service';
 import { DeletePostDialogComponent } from '../delete-post-dialog/delete-post-dialog.component';
+import { PostCreateUpdateStateMatcher } from './post-create-update-state-matcher';
 
 @Component({
   selector: 'app-create-update-post-dialog',
@@ -32,8 +31,14 @@ export class CreateUpdatePostDialogComponent implements OnInit, OnDestroy {
   dialogTitle = '';
   buttonTitle = '';
   status = SERVER_STATUS_FAIL;
+
   updatePostSubscription!: Subscription;
   createNewPostSubscription!: Subscription;
+
+  /**
+   * Error-Matcher für Benutzer Daten
+   */
+   errorMatcherForPostTitle = new PostCreateUpdateStateMatcher();
 
   form: FormGroup = this.formBuilder.group({
     postTitleControl: ['', [Validators.required]],
@@ -78,7 +83,7 @@ export class CreateUpdatePostDialogComponent implements OnInit, OnDestroy {
   setDialogData(data: DialogData): void {
     if (
       isNonEmptyObject(data.post) &&
-      this.data.operation === PostCreateUpdateDialogOperationValue.UPDATE_POST
+      data.operation === PostCreateUpdateDialogOperationValue.UPDATE_POST
     ) {
       const post = data.post;
       this.buttonTitle = UPDATE_BUTTON_TITLE;
@@ -89,6 +94,7 @@ export class CreateUpdatePostDialogComponent implements OnInit, OnDestroy {
     }
     this.buttonTitle = CREATE_BUTTON_TITLE;
     this.dialogTitle = CREATE_DIALOG_TITLE;
+    this.errorMatcherForPostTitle.setPostEntries(data.posts, data.operation)
   }
 
   /**

@@ -6,15 +6,26 @@
       <div mat-dialog-content class="dialog-content">
         <mat-form-field floatLabel="always">
           <mat-label>Post title</mat-label>
-          <input class="matInput" matInput formControlName="postTitleControl" required autocomplete="off"
+          <input
+            class="matInput" 
+            matInput 
+            formControlName="postTitleControl" 
+            [errorStateMatcher]="errorMatcherForPostTitle"
+            required 
+            autocomplete="off"
             cdkFocusInitial />
           <mat-hint 
             *ngIf="postTitleControl.hasError('required') || postTitleControl.value.trim() === ''" 
             class="matHint" 
-            align="end"
-          >
+            align="end">
             Post title required
           </mat-hint>
+          <mat-error
+            class="matError"
+            align="end"
+            *ngIf="errorMatcherForPostTitle.isTitleInUse && !postTitleControl.hasError('required')">
+            Title already exists
+          </mat-error>
         </mat-form-field>
         <mat-form-field id="postBodyField" floatLabel="always">
           <mat-label>Post body</mat-label>
@@ -28,11 +39,11 @@
             autocomplete="off"
             required>
           </textarea>
-          <mat-hint *ngIf="postBodyControl.hasError('required') || postBodyControl.value.trim() === ''"
-          class="matHint" 
-          align="end"
-         >
-           Post body required
+          <mat-hint
+            *ngIf="postBodyControl.hasError('required') || postBodyControl.value.trim() === ''"
+            class="matHint" 
+            align="end">
+            Post body required
          </mat-hint>
         </mat-form-field>
       </div>
@@ -42,7 +53,7 @@
   <div class="dialog-actions-wrapper">
     <div mat-dialog-actions class="dialog-actions-part">
       <button 
-        [disabled]="!isSaveClickable" 
+        [disabled]="!isSaveClickable || errorMatcherForPostTitle.isTitleInUse" 
         class="save-btn" 
         mat-button mat-raised-button 
         (click)="onSaveClick()">

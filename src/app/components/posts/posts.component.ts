@@ -136,6 +136,7 @@ export class PostsComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CreateUpdatePostDialogComponent, {
       disableClose: true,
       data: {
+        posts: this.posts,
         operation: PostCreateUpdateDialogOperationValue.CREATE_POST,
       },
     });
