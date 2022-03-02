@@ -77,6 +77,11 @@ export const filterPostsByValue = (value: string, postsList: Post[]): Post[] => 
       : postsList;
 };
 
+/**
+ * Opens snackbar to show error message
+ * @param msg error to be shown
+ * @param snackBar snackbar object
+ */
 export const openErrorMsgSnackBar = (msg: string, snackBar: MatSnackBar) => {
   snackBar.open(msg, 'Ok', {
     duration: 2000,

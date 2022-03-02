@@ -4,11 +4,17 @@
     <mat-card-title> Post: {{ post.id }}</mat-card-title>
     <mat-card-title>{{ post.title }}</mat-card-title>
     <mat-card-content>
-      <span>{{ post.body }}</span>
+      <div class="content">{{ post.body }}</div>
     </mat-card-content>
     <mat-card-actions>
       <div align="right">
-        <button color="primary" (click)="navigateToPostCommentsView(post.id)" mat-button>Show comments</button>
+        <span> {{commentsCount}} comments</span>
+        <button 
+        color="primary" 
+        mat-icon-button aria-label="show comments icon" 
+        (click)="navigateToPostCommentsView(post.id)">
+        <mat-icon>visibility</mat-icon>
+      </button>
         <button 
           color="primary" 
           mat-icon-button aria-label="edit icon" 

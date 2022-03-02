@@ -28,6 +28,7 @@ export class ToolBarComponent implements OnInit {
   @Input() showBackIcon = false;
   showSearchForm = false;
   @Output() selectEvent = new EventEmitter<Post[]>();
+  @Output() sortEvent = new EventEmitter<boolean>();
   @ViewChild('autocompleteInput') autocompleteInput!: ElementRef;
   postsList: Post[] = [];
   autoCompletePostsList: Post[] = [];

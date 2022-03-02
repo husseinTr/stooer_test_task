@@ -1,40 +1,38 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-  <span>My Logo</span>
-  <h1 class="toolbarTitle">{{ title }}</h1>
-  <span class="spacer"></span>
-  <button mat-icon-button class="profilIcon" aria-label="profil icon">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-</mat-toolbar-row>
-<mat-toolbar-row>
-  <button 
-    *ngIf="showBackIcon" 
-    mat-icon-button 
-    class="backIcon" 
-    (click)="navigateBack()" 
-    aria-label="back icon">
-      <mat-icon>west</mat-icon>
-  </button>
-  <span class="spacer"></span>
-  <form *ngIf="showSearchForm" class="searchForm">
-    <mat-form-field class="searchMatFormField">
-      <input 
-        type="text" 
-        matInput 
-        [formControl]="searchInputControl" 
-        #autocompleteInput 
-        [matAutocomplete]="auto">
-      <button mat-icon-button matPrefix (click)="onCloseClick()"><mat-icon>close</mat-icon></button>
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayPost">
-        <mat-option (onSelectionChange)="onPostSelect($event)" *ngFor="let option of autoCompletePostsList" [value]="option">
-          {{option.title}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-  <button mat-icon-button class="searchIcon" (click)="showSearchForm = !showSearchForm" aria-label="search icon">
-    <mat-icon>search</mat-icon>
-  </button>
-</mat-toolbar-row>
+    <div>My Logo</div>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="profil icon" [matMenuTriggerFor]="appMenuProfile">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #appMenuProfile="matMenu" [overlapTrigger]="false">
+      <button class="mat-menu-item" mat-menu-item><mat-icon class="mat-menu-Icon">info</mat-icon>Info</button>
+      <button class="mat-menu-item" mat-menu-item><mat-icon class="mat-menu-Icon">settings</mat-icon>Settings</button>
+      <button class="mat-menu-item" mat-menu-item><mat-icon class="mat-menu-Icon">logout</mat-icon>Log out</button>
+    </mat-menu>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <button *ngIf="showBackIcon" mat-icon-button class="backIcon" (click)="navigateBack()" aria-label="back icon">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="toolbarTitle">{{ title }}</h1>
+    <span class="spacer"></span>
+    <form *ngIf="showSearchForm" class="searchForm">
+      <mat-form-field class="searchMatFormField">
+        <input type="text" matInput [formControl]="searchInputControl" #autocompleteInput [matAutocomplete]="auto">
+        <button mat-icon-button matPrefix (click)="onCloseClick()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayPost">
+          <mat-option (onSelectionChange)="onPostSelect($event)" *ngFor="let option of autoCompletePostsList"
+            [value]="option">
+            {{option.title}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+    <button *ngIf="!showBackIcon" mat-icon-button (click)="showSearchForm = !showSearchForm" aria-label="search icon">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>

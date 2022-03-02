@@ -2,10 +2,11 @@
 </app-tool-bar>
 <div class="commentsContainer">
   <mat-card class="commentCard" *ngFor="let comment of comments">
+    <mat-card-title> Comment: {{ comment.id}}</mat-card-title>
     <mat-card-content>
-      <div class="commentContent">{{ comment.name }}</div>
-      <div class="commentContent">{{ comment.email }}</div>
-      <div class="commentContent">{{ comment.body }}</div>
+      <div class="content">{{ comment.name }}</div>
+      <div class="content">{{ comment.email }}</div>
+      <div class="content">{{ comment.body }}</div>
     </mat-card-content>
   </mat-card>
 </div>

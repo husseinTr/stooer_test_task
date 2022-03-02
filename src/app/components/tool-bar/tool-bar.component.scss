@@ -3,7 +3,8 @@
 }
 
 .toolbarTitle {
-  margin-left: 3rem;
+  text-align: center;
+  width: 100%;
 }
 
 .searchForm {
@@ -12,4 +13,16 @@
 
 .searchMatFormField {
   width: 100%;
+}
+
+.mat-icon {
+  font-size: 1.8rem;
+}
+
+.mat-menu-Icon {
+  font-size: 1.4rem;
+}
+
+.mat-menu-item {
+  font-size: 1rem;
 }

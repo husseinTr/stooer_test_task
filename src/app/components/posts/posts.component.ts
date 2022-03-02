@@ -5,14 +5,12 @@ import {
   isNonEmptyArray,
   isNonEmptyObject,
   openErrorMsgSnackBar,
-  removeRequestSubscription
+  removeRequestSubscription,
 } from '../utils';
 
-import { CreateUpdatePostDialogComponent }
- from '../../dialogs/create-update-post-dialog/create-update-post-dialog.component';
+import { CreateUpdatePostDialogComponent } from '../../dialogs/create-update-post-dialog/create-update-post-dialog.component';
 import { DataService } from 'src/app/services/data.service';
-import { DeletePostDialogComponent }
- from '../../dialogs/delete-post-dialog/delete-post-dialog.component';
+import { DeletePostDialogComponent } from '../../dialogs/delete-post-dialog/delete-post-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -27,6 +25,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   postsRequestSubscription!: Subscription;
   toolbarTitle = 'All posts';
+  commentsCount!: number;
 
   constructor(
     private dataService: DataService,
@@ -52,14 +51,29 @@ export class PostsComponent implements OnInit, OnDestroy {
         removeRequestSubscription(this.postsRequestSubscription);
         if (isNonEmptyArray(data)) {
           this.posts = data;
+          for (const post of this.posts) {
+            this.getComments(post.id);
+          }
         } else {
           openErrorMsgSnackBar('No posts found', this.snackBar);
         }
       },
       error: (error) => {
         const errorMessage = error.message;
-        openErrorMsgSnackBar('There was an error on load posts: ' + errorMessage, this.snackBar);
+        openErrorMsgSnackBar(
+          'There was an error on load posts: ' + errorMessage,
+          this.snackBar
+        );
       },
+    });
+  }
+
+  getComments(postId: number): void {
+    this.dataService.getCommentsById(postId).subscribe((data: any) => {
+      if (isNonEmptyArray(data)) {
+        this.commentsCount = data.length;
+        console.log(this.commentsCount);
+      }
     });
   }
 
